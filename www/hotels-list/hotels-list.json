@@ -1,0 +1,134 @@
+[
+  {
+    "id": 1,
+    "name": "Four seasons",
+    "city": "Moscow",
+    "description": "Steps from the Kremlin and Red Square in Moscow's historic heart, Old World glamour gets a contemporary spin at Four Seasons Hotel Moscow. Discover a bold reimagining of the legendary 1930s-era Hotel Moskva at our modern replica that puts destination dining and decadent spa treatments in the spotlight.",
+    "price": 230,
+    "smoke": false,
+    "animals": true,
+    "score": 8.2,
+    "img": "../img/four-seasons-hotel-moscow.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Sheraton",
+    "city": "Paris",
+    "description": "The Sheraton Paris Airport Hotel offers its guests one of the most convenient locations possible. This 4 star luxurious hotel is located on the actual rooftop of the parking garage 3, inside the Paris International Airport.",
+    "price": 311,
+    "smoke": true,
+    "animals": true,
+    "score": 8.4,
+    "img": "../img/aerial-sheraton-paris.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Yalta hotel",
+    "city": "Yalta",
+    "description": "At Yalta, U.S. President Franklin D. Roosevelt, British Prime Minister Winston Churchill, and Soviet Premier Joseph Stalin made important decisions regarding.",
+    "price": 800,
+    "smoke": false,
+    "animals": false,
+    "score": 8.0,
+    "img":"../img/caption-yalta.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Hilton",
+    "city": "Paris",
+    "description": "Rés hôtelière. Cuisine, clime, Wifi Piscine chauffée, jardin, dès 65 €. Grande piscine chauffée. Jardin spacieux. Parking privé sécurisé.",
+    "price": 230,
+    "smoke": true,
+    "animals": true,
+    "score": 8.2,
+    "img": "../img/exterior-hilton-paris.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Koln radisson spa",
+    "city": "Koln",
+    "description": "For other uses of Köln, see Köln (disambiguation). City in North Rhine-Westphalia, Germany. Cologne. Köln (German).",
+    "price": 430,
+    "smoke": true,
+    "animals": false,
+    "score": 9.5,
+    "img":"../img/exterior-view-keln.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Holiday inn",
+    "city": "Warsaw",
+    "description": "Warsaw, officially the Capital City of Warsaw, is the capital and largest city of Poland. The metropolis stands on the River Vistula in east-central Poland.",
+    "price": 138,
+    "smoke": true,
+    "animals": true,
+    "score": 8.9,
+    "img": "../img/exterior-warshava.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Urgup spa",
+    "city": "Urgup",
+    "description": "The Cappadocia region's most upscale and contemporary tourist city, Urgup has a number of lovely hotels, many built in and around centuries-old cave.",
+    "price": "$300",
+    "smoke": false,
+    "animals": true,
+    "score": 6.3,
+    "img": "../img/getlstd-property-photo-urgup.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Santa-maria",
+    "city": "Roma",
+    "description": "Visual evolution of the diminutive cloche hat of the 1920s - Caroline Reboux's bell or 'cloche' hat of the 1920s took some years to evolve, as this timeline.",
+    "price": "$510",
+    "smoke": false,
+    "animals": false,
+    "score": 9.9,
+    "img":"../img/hotel-santa-maria-roma.jpg"
+  },
+  {
+    "id": 9,
+    "name": "Wellton",
+    "city": "Riga",
+    "description": "Being significantly larger than other cities of Latvia, Riga is the country's primate city. It is also the largest city in the three Baltic states and is home.",
+    "price": "$130",
+    "smoke": true,
+    "animals": true,
+    "score": 7.7,
+    "img":"../img/hotel-wellton-riga.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Lounge and bar hotel",
+    "city": "Bruxelles",
+    "description": "Le site web officiel de la Ville de Bruxelles, capitale de la Belgique: e-guichet, rendez-vous en ligne, actualités, agenda, webcams.",
+    "price": "$690",
+    "smoke": true,
+    "animals": true,
+    "score": 9.3,
+    "img": "../img/lounge-and-bar-bruxelle.jpg"
+  },
+  {
+    "id": 11,
+    "name": "Kelebek",
+    "city": "Kelebek",
+    "description": "Welcome to Grana Barocco Art Hotel & Spa. Visit the Historic Center of Kelebek. Spa Hotel.",
+    "price": "$90",
+    "smoke": true,
+    "animals": true,
+    "score": 5.6,
+    "img": "../img/kelebek-fairy-chimneys-goreme.jpg"
+  },
+  {
+    "id": 12,
+    "name": "Vienna house",
+    "city": "Vienna",
+    "description": "Le web officiel de la Ville de Vienna, officiel capitale de la Belgique: e-guichet, rendez-vous en ligne, actualités, agenda, webcams.",
+    "price": "$790",
+    "smoke": true,
+    "animals": true,
+    "score": 9.6,
+    "img": "../img/vienna-house-easy-osnabruck.jpg"
+  }
+]
