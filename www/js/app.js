@@ -22,6 +22,11 @@ app
         templateUrl: 'templates/hotelsList.html',
         controller: 'hotelsListCtrl'
       })
+      .state('hotelCard', {
+        url: '/hotelCard/:name/:city/:img/:price/:smoke/:animals/:score',
+        templateUrl: 'templates/hotelCard.html',
+        controller: 'hotelCardController'
+      })
 
     $urlRouterProvider.otherwise("/");
   })

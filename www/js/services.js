@@ -37,3 +37,14 @@ app
       return deferred.promise
     }
   })
+
+  .factory('toBook',  function ($state, $stateParams) {
+
+    return {
+      toBook: toBook
+    }
+
+    function toBook(hotelInfo){
+      $state.go('hotelCard', hotelInfo )
+    }
+  })
