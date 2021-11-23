@@ -1,9 +1,10 @@
 app
-  .controller('hotelsListController', ['$scope', '$state', 'toBook', 'hotelListHttpSrvc','$ionicSideMenuDelegate',
-    function ($scope, $state, toBook, hotelListHttpSrvc, $ionicSideMenuDelegate) {
+  .controller('hotelsListController', ['$rootScope','$scope', '$state', 'toBook', 'hotelListHttpSrvc','$ionicSideMenuDelegate',
+    function ($rootScope,$scope, $state, toBook, hotelListHttpSrvc, $ionicSideMenuDelegate) {
 
       $scope.hotelsList
       $scope.toBook = toBook.toBook
+
 
       $scope.toggleLeft = function() {
         $ionicSideMenuDelegate.toggleRight();
