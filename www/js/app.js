@@ -1,7 +1,8 @@
 let app = angular.module('hotels', ['ionic'])
 
 app
-  .run(function ($ionicPlatform) {
+  .run(function ($ionicPlatform, $rootScope, $ionicLoading) {
+
     $ionicPlatform.ready(function () {
 
       if (window.cordova && window.Keyboard) {
@@ -12,9 +13,26 @@ app
         StatusBar.styleDefault();
       }
     });
+
+    $rootScope.$on("$stateChangeStart", () => {
+      $ionicLoading.show({
+        template: "Loading..."
+      })
+
+      $rootScope.$on("$stateChangeSuccess", () => {
+        $ionicLoading.hide()
+      })
+
+      $rootScope.$on("$stateChangeError", (event, toState, toParams, fromState, fromParams, error) => {
+        $ionicLoading.hide();
+      })
+    });
   })
 
+
+
   .config(function ($stateProvider, $urlRouterProvider) {
+
 
     $stateProvider
       .state('main', {
