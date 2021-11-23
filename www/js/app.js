@@ -20,13 +20,12 @@ app
       .state('main', {
         url: '/',
         templateUrl: 'templates/hotelsList.html',
-        controller: 'hotelsListCtrl'
+        controller: 'hotelsListController'
       })
       .state('hotelCard', {
         url: '/hotelCard/:name/:city/:img/:price/:smoke/:animals/:score',
         templateUrl: 'templates/hotelCard.html',
         controller: 'hotelCardController'
       })
-
     $urlRouterProvider.otherwise("/");
   })

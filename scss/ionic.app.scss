@@ -1,3 +1,4 @@
+
 /*
 To customize the look and feel of Ionic, you can override the variables
 in ionic's _variables.scss file.
@@ -20,4 +21,61 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
+
+.pane {
+  overflow-y: scroll;
+}
+.main_header {
+  color:rgb(75, 186, 222);
+}
+
+.hotels-list {
+  padding:56px 10px 10px 10px;
+}
+
+.hotel__card {
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 12px;
+  box-shadow: 0px 5px 5px lightblue;
+  cursor: pointer;
+  &:hover {
+    transform: scale(0.99);
+    background-color: $stable;
+    transition: all 0.1s ease-in-out;
+  }
+}
+
+.hotel__description {
+  padding: 5px;
+  line-height: 140%;
+  margin-top: -42px;
+}
+
+.description__header {
+  color: $light;
+}
+
+._smallIMG {
+  width: 8%;
+}
+
+.hotel__price {
+  display: flex;
+  gap: 4%;
+  align-items: flex-end;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.side-menu {
+  li {
+  font-size: 130%;
+  font-weight: 600;
+  color: $royal + 20;
+  }
+}
+
+
+
 

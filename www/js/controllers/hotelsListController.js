@@ -1,11 +1,13 @@
 app
-  .controller('hotelsListCtrl', ['$scope', '$state', '$rootScope', 'toBook', 'hotelListHttpSrvc',
-    function ($scope, $state, $rootScope, toBook, hotelListHttpSrvc) {
+  .controller('hotelsListController', ['$scope', '$state', 'toBook', 'hotelListHttpSrvc','$ionicSideMenuDelegate',
+    function ($scope, $state, toBook, hotelListHttpSrvc, $ionicSideMenuDelegate) {
 
       $scope.hotelsList
       $scope.toBook = toBook.toBook
-      $rootScope.logg = toBook.logg
 
+      $scope.toggleLeft = function() {
+        $ionicSideMenuDelegate.toggleRight();
+      }
 
       hotelListHttpSrvc.getHotelsList()
         .then(data => $scope.hotelsList = data,

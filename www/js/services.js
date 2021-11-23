@@ -42,11 +42,6 @@ app
 
     return {
       toBook: toBook,
-      logg: logg
-    }
-
-    function logg() {
-      console.log('dddd')
     }
 
     function toBook(hotelInfo){
