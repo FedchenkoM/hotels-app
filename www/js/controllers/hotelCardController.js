@@ -7,7 +7,7 @@ app.
     $scope.price = $stateParams.price
     $scope.animals = $stateParams.animals
     $scope.smoke = $stateParams.smoke
-    console.log($stateParams);
+
     $scope.gotoMain = function () {
       return $state.go('main')
     }
