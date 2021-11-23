@@ -1,34 +1,44 @@
 <ion-view>
-  <ion-header>
-    <ion-toolbar class="ion-padding-start">
-      <ion-text class="ion-no-margin">
-        <h1 class="main_header ion-no-margin">Hotels.fed</h1>
-      </ion-text>
-      <ion-buttons slot="end">
-        <ion-button>
-          <ion-icon color="secondary" size="large" name="reorder-four-outline"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
-  <!-- ______________________________________________________________ -->
-  <ion-content>
-    <section class="hotels-list">
-      <div ng-repeat="hotel in hotelsList" ng-click="toBook(hotel)" class="hotel__card">
-        <img src={{hotel.img}} alt={{hotel.name}}>
-        <div class="hotel__description">
-          <h2 class="description__header">{{hotel.city}} | {{hotel.name}} </h2>
-          <p class="hotel__price">
-            &#8364;{{hotel.price}} | &#10051;{{hotel.score}}
-            <img class="_smallIMG" ng-if="!hotel.animals" src="img/no-pets-svgrepo-com.svg">
-            <img class="_smallIMG" ng-if="!hotel.smoke" src="img/no-smoking-svgrepo-com.svg">
-          </p>
-          <p>{{hotel.description}}
-          <p>
-        </div>
-      </div>
-      </div>
-    </section>
-  </ion-content>
-  <ion-footer></ion-footer>
+  <ion-side-menus>
+    <ion-side-menu-content>
+      <ion-toolbar class="ion-padding-start">
+        <ion-text class="ion-no-margin">
+          <h1 class="main_header ion-no-margin">Hotels.fed</h1>
+        </ion-text>
+        <ion-buttons slot="end">
+          <ion-button ng-click="toggleLeft()">
+            <ion-icon color="secondary" size="large" name="reorder-four-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+      <ion-content>
+        <section class="hotels-list">
+          <div ng-repeat="hotel in hotelsList" ng-click="toBook(hotel)" class="hotel__card">
+            <img ng-src={{hotel.img}} alt={{hotel.name}}>
+            <div class="hotel__description">
+              <h2 class="description__header">{{hotel.city}} | {{hotel.name}} </h2>
+              <p class="hotel__price">
+                &#8364;{{hotel.price}} | &#10051;{{hotel.score}}
+                <img class="_smallIMG" ng-if="!hotel.animals" ng-src="img/no-pets-svgrepo-com.svg">
+                <img class="_smallIMG" ng-if="!hotel.smoke" ng-src="img/no-smoking-svgrepo-com.svg">
+              </p>
+              <p>{{hotel.description}}
+              <p>
+            </div>
+          </div>
+          </div>
+        </section>
+      </ion-content>
+    </ion-side-menu-content>
+    <ion-side-menu side="right">
+      <ion-content>
+        <ion-list class="side-menu">
+          <ul class="list">
+            <li ng-click="" class="item">Filters</li>
+            <li ng-click="" class="item">Booking list</li>
+        </ul>
+        </ion-list>
+      </ion-content>
+    </ion-side-menu>
+  </ion-side-menus>
 </ion-view>

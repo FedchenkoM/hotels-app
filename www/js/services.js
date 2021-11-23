@@ -41,7 +41,7 @@ app
   .factory('toBook',  function ($state, $stateParams) {
 
     return {
-      toBook: toBook
+      toBook: toBook,
     }
 
     function toBook(hotelInfo){
