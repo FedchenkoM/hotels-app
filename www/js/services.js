@@ -38,13 +38,13 @@ app
     }
   })
 
-  .factory('toBook',  function ($state, $stateParams) {
-
+  .factory('toBook', function ($state, $stateParams) {
     return {
-      toBook: toBook,
+      toBook: toBook
     }
 
-    function toBook(hotelInfo){
-      $state.go('hotelCard', hotelInfo )
+    function toBook(hotelInfo) {
+      $state.go('hotelCard', hotelInfo)
     }
   })
+

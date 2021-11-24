@@ -1,0 +1,34 @@
+<ion-modal-view>
+  <div ng-controller="bookingModalController" class="my-modal">
+    <div class="bar bar-header bar-calm">
+      <a ng-click="closeModal()" class="button icon-left ion-chevron-left button-clear button-dark"></a>
+      <h1 class="title">Booking form {{name}}</h1>
+    </div>
+    <div class="list">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Hotel</span>
+        <input type="text" value="{{name}}" readonly >
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Location</span>
+        <input type="text" value="{{city}}" readonly >
+      </label>
+
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Date</span>
+        <input type="date" placeholder="input date">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Number of persons</span>
+        <input type="number" placeholder="enter the number of persons" ng-model="numOfPersons" max="99">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Number of days</span>
+        <input type="number" placeholder="enter the number of days" ng-model="numOfDays" max="30">
+      </label>
+      <button ng-if="numOfPersons && numOfDays && price" class="button button-block button-calm">
+        <span>Book for &#8364;{{numOfPersons * numOfDays * price}}</span>
+      </button>
+    </div>
+  </div>
+</ion-modal-view>

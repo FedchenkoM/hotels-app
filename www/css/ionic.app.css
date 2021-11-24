@@ -9916,3 +9916,7 @@ a.button {
   font-size: 130%;
   font-weight: 600;
   color: #9c7efe; }
+
+.my-modal {
+  margin-top: 43px;
+  font-size: 200%; }

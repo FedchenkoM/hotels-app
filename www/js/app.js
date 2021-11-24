@@ -23,7 +23,7 @@ app
         $ionicLoading.hide()
       })
 
-      $rootScope.$on("$stateChangeError", (event, toState, toParams, fromState, fromParams, error) => {
+      $rootScope.$on("$stateChangeError", () => {
         $ionicLoading.hide();
       })
     });
