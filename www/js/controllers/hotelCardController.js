@@ -1,6 +1,7 @@
 app.
   controller('hotelCardController', ['$scope', '$state', '$stateParams','$ionicModal',
    function ($scope, $state, $stateParams, $ionicModal) {
+    $scope.id = $stateParams.id
     $scope.name = $stateParams.name
     $scope.city = $stateParams.city
     $scope.imgSrc = $stateParams.img
@@ -11,6 +12,7 @@ app.
     $scope.gotoMain = gotoMain
     $scope.closeModal = closeModal
     $scope.openModal = openModal
+
 
 
     $ionicModal.fromTemplateUrl('templates/bookingModal.html', {

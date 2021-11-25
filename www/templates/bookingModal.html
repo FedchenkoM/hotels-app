@@ -7,27 +7,30 @@
     <div class="list">
       <label class="item item-input item-stacked-label">
         <span class="input-label">Hotel</span>
-        <input type="text" value="{{name}}" readonly >
+        <input type="text" value="{{name}}" readonly>
       </label>
       <label class="item item-input item-stacked-label">
         <span class="input-label">Location</span>
-        <input type="text" value="{{city}}" readonly >
-      </label>
-
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Date</span>
-        <input type="date" placeholder="input date">
+        <input type="text" value="{{city}}" readonly>
       </label>
       <label class="item item-input item-stacked-label">
-        <span class="input-label">Number of persons</span>
-        <input type="number" placeholder="enter the number of persons" ng-model="numOfPersons" max="99">
+        <span class="input-label">Date start</span>
+        <input type="date" ng-model="dateStart" min={{today}}>
       </label>
       <label class="item item-input item-stacked-label">
-        <span class="input-label">Number of days</span>
-        <input type="number" placeholder="enter the number of days" ng-model="numOfDays" max="30">
+        <span class="input-label">Maximum number of persons <b>99</b> </span>
+        <input type="number" placeholder="enter the number of persons" ng-model="numOfPersons" ng-min="1" ng-max="99">
       </label>
-      <button ng-if="numOfPersons && numOfDays && price" class="button button-block button-calm">
-        <span>Book for &#8364;{{numOfPersons * numOfDays * price}}</span>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Maximum number of days <b>30</b> </span>
+        <input type="number" placeholder="enter the number of days" ng-model="numOfDays" ng-min="1" ng-max="30">
+      </label>
+      <button ng-click="submitToLocalStorage()" ng-disabled="!numOfPersons || !price || !numOfDays || !dateStart"
+        class="button button-block button-calm">
+        <span ng-if="numOfPersons && numOfDays && dateStart && price"> <b> Book for &#8364;{{numOfPersons * numOfDays *
+            price}}</b>
+        </span>
+        <span ng-if="!numOfPersons || !numOfDays || !dateStart || !price"> Please fill in all fields </span>
       </button>
     </div>
   </div>

@@ -41,7 +41,7 @@ app
         controller: 'hotelsListController'
       })
       .state('hotelCard', {
-        url: '/hotelCard/:name/:city/:img/:price/:smoke/:animals/:score',
+        url: '/hotelCard/:id/:name/:city/:img/:price/:smoke/:animals/:score',
         templateUrl: 'templates/hotelCard.html',
         controller: 'hotelCardController'
       })

@@ -5,19 +5,16 @@ app
     }
 
     function getHotelsList() {
-
       let deferred = $q.defer()
+
       try {
         $http.get('hotels-list/hotels-list.json')
           .then(data => deferred.resolve(data.data))
       } catch (error) {
         let errorMsg = 'Неизвестная ошибка'
         switch (error.status) {
-          case 400 || 401:
+          case 400 || 401 || 403:
             errorMsg = 'Некорректный запрос';
-            break;
-          case 403:
-            errorMsg = 'У Вас нет прав доступа';
             break;
           case 404:
             errorMsg = 'Сервер не найден';
@@ -47,4 +44,67 @@ app
       $state.go('hotelCard', hotelInfo)
     }
   })
+
+  .factory('localStorageSrvc', function () {
+    return {
+      hasHotelInLocalStorage: hasHotelInLocalStorage,
+      // hasDateCollision: hasDateCollision,
+      getDateInLocalStorage: getDateInLocalStorage
+    }
+
+    // function hasDateCollision(dateStorage, currentStartDate, currentEndDate) {
+    //   const curStartDay = new Date(currentStartDate.year, currentStartDate.month, currentStartDate.day)
+    //   const curEndDay = new Date(currentEndDate.year, currentEndDate.month, currentEndDate.day)
+    //   const startDayInStorage = new Date(dateStorage.startYear, dateStorage.startMonth, dateStorage.startDay)
+    //   const lastDayInStorage = new Date(dateStorage.endYear, dateStorage.endMonth, dateStorage.endDay)
+
+    //   if ((curStartDay < lastDayInStorage && curStartDay > startDayInStorage)
+    //     || (curEndDay < lastDayInStorage && curEndDay > startDayInStorage ) ) {
+    //       return true
+    //     } else {
+    //       return false
+    //   }
+    //   console.log(curStartDay, curEndDay,startDayInStorage, lastDayInStorage );
+    // }
+
+    function getDateInLocalStorage(id) {
+      const localStorageHotel = JSON.parse(localStorage.getItem(id))
+      return {
+        startYear: localStorageHotel.dateStart.year,
+        startMonth: localStorageHotel.dateStart.month,
+        startDay: localStorageHotel.dateStart.day,
+        endYear: localStorageHotel.dateEnd.year,
+        endMonth: localStorageHotel.dateEnd.month,
+        endDay: localStorageHotel.dateEnd.day
+      }
+    }
+
+    function hasHotelInLocalStorage(hotelId) {
+      return localStorage.getItem(hotelId) !== null ? true : false
+    }
+
+  })
+
+  .factory('dataService', function () {
+    let data = new Date()
+    let day = data.getDate()
+    let month = data.getMonth() + 1
+    let year = data.getFullYear()
+
+    return {
+      dateEnd: setDateEnd,
+      setToday: () => `${year}-${month}-${day}`
+    }
+
+    function setDateEnd(dateStart, numOfDays) {
+      const date = new Date(dateStart.getFullYear(), dateStart.getMonth(), dateStart.getDate() + numOfDays)
+      return {
+        year: date.getFullYear(),
+        month: date.getMonth() + 1,
+        day: date.getDate()
+      }
+    }
+  })
+
+
 
