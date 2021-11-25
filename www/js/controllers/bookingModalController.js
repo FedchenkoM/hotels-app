@@ -28,7 +28,6 @@ app.
 
 
         window.localStorage.setItem($scope.id, JSON.stringify(bookInfo)),
-        $scope.closeModal()
-        $scope.showResume()
+        $scope.closeModal().then($scope.showResume)
 
   }})
