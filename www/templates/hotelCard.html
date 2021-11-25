@@ -4,10 +4,10 @@
     <ion-card-header>
       <ion-card-title class="ion-padding-bottom ion-text-uppercase">{{name}} | {{city}} | &#10051;{{score}}
       </ion-card-title>
-      <img src={{imgSrc}} alt="{{name}}">
-      <img class="_smallIMG" ng-if="animals=='false'" src="img/no-pets-svgrepo-com.svg">
-      <img class="_smallIMG " ng-if="smoke=='false'" src="img/no-smoking-svgrepo-com.svg">
-      <ion-button color="secondary" expand="full">Booking for &#8364;{{price}}</ion-button>
+      <img ng-src={{imgSrc}} alt="{{name}}">
+      <img class="_smallIMG" ng-if="animals=='false'" ng-src="img/no-pets-svgrepo-com.svg">
+      <img class="_smallIMG " ng-if="smoke=='false'" ng-src="img/no-smoking-svgrepo-com.svg">
+      <ion-button color="secondary" expand="full" ng-click="openModal()">Book for &#8364;{{price}}</ion-button>
     </ion-card-header>
     <ion-card-content>
       Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident esse laudantium aliquam harum corrupti,

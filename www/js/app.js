@@ -23,7 +23,7 @@ app
         $ionicLoading.hide()
       })
 
-      $rootScope.$on("$stateChangeError", (event, toState, toParams, fromState, fromParams, error) => {
+      $rootScope.$on("$stateChangeError", () => {
         $ionicLoading.hide();
       })
     });
@@ -41,7 +41,7 @@ app
         controller: 'hotelsListController'
       })
       .state('hotelCard', {
-        url: '/hotelCard/:name/:city/:img/:price/:smoke/:animals/:score',
+        url: '/hotelCard/:id/:name/:city/:img/:price/:smoke/:animals/:score',
         templateUrl: 'templates/hotelCard.html',
         controller: 'hotelCardController'
       })

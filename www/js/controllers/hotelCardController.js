@@ -1,5 +1,7 @@
 app.
-  controller('hotelCardController', ['$scope', '$state', '$stateParams', 'toBook', function ($scope, $state, $stateParams) {
+  controller('hotelCardController', ['$scope', '$state', '$stateParams','$ionicModal',
+   function ($scope, $state, $stateParams, $ionicModal) {
+    $scope.id = $stateParams.id
     $scope.name = $stateParams.name
     $scope.city = $stateParams.city
     $scope.imgSrc = $stateParams.img
@@ -7,8 +9,29 @@ app.
     $scope.price = $stateParams.price
     $scope.animals = $stateParams.animals
     $scope.smoke = $stateParams.smoke
+    $scope.gotoMain = gotoMain
+    $scope.closeModal = closeModal
+    $scope.openModal = openModal
 
-    $scope.gotoMain = function () {
+
+
+    $ionicModal.fromTemplateUrl('templates/bookingModal.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function (modal) {
+      $scope.modal = modal;
+    })
+
+    function openModal () {
+      $scope.modal.show();
+    }
+
+    function closeModal () {
+      $scope.modal.hide()
+    }
+
+
+    function gotoMain () {
       return $state.go('main')
     }
   }])
