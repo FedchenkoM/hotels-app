@@ -1,6 +1,6 @@
 app.
-  controller('hotelCardController', ['$scope', '$state', '$stateParams','$ionicModal',
-   function ($scope, $state, $stateParams, $ionicModal) {
+  controller('hotelCardController', ['$scope', '$state', '$stateParams','$ionicModal', '$ionicPopup',
+   function ($scope, $state, $stateParams, $ionicModal, $ionicPopup) {
     $scope.id = $stateParams.id
     $scope.name = $stateParams.name
     $scope.city = $stateParams.city
@@ -12,26 +12,39 @@ app.
     $scope.gotoMain = gotoMain
     $scope.closeModal = closeModal
     $scope.openModal = openModal
+    $scope.initModal = initModal
+    $scope.showResume = showPopup
 
+    if(!$scope.modal) {
+      initModal()
+    }
 
-
-    $ionicModal.fromTemplateUrl('templates/bookingModal.html', {
-      scope: $scope,
-      animation: 'slide-in-up'
-    }).then(function (modal) {
-      $scope.modal = modal;
-    })
+    function initModal() {
+      $ionicModal.fromTemplateUrl('templates/bookingModal.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+      }).then(function (modal) {
+        $scope.modal = modal;
+      })
+    }
 
     function openModal () {
       $scope.modal.show();
     }
 
     function closeModal () {
-      $scope.modal.hide()
+      $scope.modal.remove()
+      initModal()
     }
-
 
     function gotoMain () {
       return $state.go('main')
+    }
+
+    function showPopup() {
+      var alertPopup = $ionicPopup.alert({
+        title: `Welcome to ${$scope.name}`,
+        template: `You are booked ${$scope.name} ${$scope.city} `
+      });
     }
   }])
