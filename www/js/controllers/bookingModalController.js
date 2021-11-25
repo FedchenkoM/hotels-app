@@ -26,7 +26,8 @@ app.
         city: $scope.city
       }
 
-        window.localStorage.setItem($scope.id, JSON.stringify(bookInfo))
-        $scope.closeModal()
-    }
-  })
+
+        window.localStorage.setItem($scope.id, JSON.stringify(bookInfo)),
+        $scope.closeModal().then($scope.showResume)
+
+  }})
