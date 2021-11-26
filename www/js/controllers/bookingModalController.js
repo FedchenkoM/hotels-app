@@ -1,5 +1,5 @@
 app.
-  controller('bookingModalController', function ($scope, localStorageSrvc, dataService) {
+  controller('bookingModalController', function ($scope, $state, localStorageSrvc, dataService) {
     $scope.localStorageSrvc = localStorageSrvc
     $scope.numOfPersons
     $scope.numOfDays
@@ -26,8 +26,6 @@ app.
         city: $scope.city
       }
 
-
         window.localStorage.setItem($scope.id, JSON.stringify(bookInfo)),
         $scope.closeModal().then($scope.showResume)
-
   }})
