@@ -1,31 +1,21 @@
-app.
-  controller('bookingModalController', function ($scope, $state, localStorageSrvc, dataService) {
-    $scope.localStorageSrvc = localStorageSrvc
-    $scope.numOfPersons
-    $scope.numOfDays
-    $scope.dateStart
-    $scope.dateEnd
-    $scope.today = dataService.setToday()
-    $scope.totalSum
-    $scope.submitToLocalStorage = submitBook
+app.controller('bookingModalController', ['$scope', '$state', 'dataService', function ($scope, $state, dataService) {
+  $scope.today = dataService.setToday()
+  $scope.submitToLocalStorage = submitBook
 
-    function submitBook(localStorageSrvc) {
-      let bookInfo = {
-        id: $scope.id,
-        name: $scope.name,
-        city: $scope.city,
-        dateStart: {
-          year: $scope.dateStart.getFullYear(),
-          month: $scope.dateStart.getMonth() + 1,
-          day: $scope.dateStart.getDate()
-        },
-        dateEnd: dataService.dateEnd($scope.dateStart, $scope.numOfDays),
-        totalSum: $scope.numOfDays * $scope.numOfPersons * +$scope.price,
-        numOfPersons: $scope.numOfPersons,
-        name: $scope.name,
-        city: $scope.city
-      }
+  function submitBook() {
+    let bookInfo = {
+      ...$scope.hotel,
+      dateStart: {
+        year: $scope.dateStart.getFullYear(),
+        month: $scope.dateStart.getMonth() + 1,
+        day: $scope.dateStart.getDate()
+      },
+      dateEnd: dataService.dateEnd($scope.dateStart, $scope.numOfDays),
+      totalSum: $scope.numOfDays * $scope.numOfPersons * +$scope.hotel.price,
+      numOfPersons: $scope.numOfPersons
+    }
 
-        window.localStorage.setItem($scope.id, JSON.stringify(bookInfo)),
-        $scope.closeModal().then($scope.showResume)
-  }})
+    window.localStorage.setItem($scope.hotel.id, JSON.stringify(bookInfo)),
+      $scope.closeModal().then($scope.showResume)
+  }
+}])

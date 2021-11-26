@@ -9864,6 +9864,9 @@ a.button {
 .main_header {
   color: #4bbade; }
 
+._booked-hotels-list {
+  margin-top: 45px; }
+
 .hotels-list {
   padding: 56px 10px 10px 10px; }
 

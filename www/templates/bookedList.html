@@ -1,0 +1,19 @@
+<ion-view>
+  <div class="bar bar-header">
+    <a ng-click="goToMain()" class="button icon-left ion-chevron-left button-clear button-dark"></a>
+    <h1 class="title">Your booked hotels list: </h1>
+  </div>
+  <div class="list _booked-hotels-list">
+    <a ng-repeat="hotel in hotels" class="item item-thumbnail-left" href="#">
+      <img ng-src={{hotel.img}}>
+      <h2>{{hotel.city}} | {{hotel.name}}</h2>
+      <p>Checkin date: {{hotel.dateStart.day}}.{{hotel.dateStart.month}}.{{hotel.dateStart.year}}</p>
+      <p>Checkout date: {{hotel.dateEnd.day}}.{{hotel.dateEnd.month}}.{{hotel.dateEnd.year}}</p>
+      <p>Number of persons: {{hotel.numOfPersons}}</p>
+      <p>Total sum: &#8364;{{hotel.totalSum}}</p>
+      <button ng-click='removeHotel({{hotel.id}})' class="button button-outline button-assertive">
+        cancel reservation
+      </button>
+    </a>
+  </div>
+</ion-view>
