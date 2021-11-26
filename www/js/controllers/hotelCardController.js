@@ -1,5 +1,4 @@
-app.
-  controller('hotelCardController', ['$scope', '$state', '$stateParams', '$ionicModal', '$ionicPopup',
+app.controller('hotelCardController', ['$scope', '$state', '$stateParams', '$ionicModal', '$ionicPopup',
     function ($scope, $state, $stateParams, $ionicModal, $ionicPopup) {
       $scope.$on('$ionicView.beforeEnter', function () {
         $scope.hotel = $stateParams.hotel

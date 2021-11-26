@@ -6,7 +6,7 @@
           <h1 class="main_header ion-no-margin">Hotels.fed</h1>
         </ion-text>
         <ion-buttons slot="end">
-          <ion-button ng-click="toggleLeft()">
+          <ion-button ng-click="toggleRight()">
             <ion-icon color="secondary" size="large" name="reorder-four-outline"></ion-icon>
           </ion-button>
         </ion-buttons>
@@ -24,7 +24,7 @@
                 <img class="_smallIMG" ng-if="!hotel.smoke" ng-src="img/no-smoking-svgrepo-com.svg">
               </p>
               <p>{{hotel.description}}
-              <p>
+              </p>
             </div>
           </div>
           </div>
@@ -36,7 +36,7 @@
         <ion-list class="side-menu">
           <ul class="list">
             <li ng-click="" class="item">Filters</li>
-            <li ng-click="" class="item">Booking list</li>
+            <li ng-click="toBookedHotels()" class="item">Booked list</li>
           </ul>
         </ion-list>
       </ion-content>

@@ -47,5 +47,10 @@ app
         templateUrl: 'templates/hotelCard.html',
         controller: 'hotelCardController'
       })
+      .state('bookedList', {
+        url: '/bookedList',
+        templateUrl:'templates/bookedList.html',
+        controller: 'bookedHotelsListController'
+      })
     $urlRouterProvider.otherwise("/");
   })
