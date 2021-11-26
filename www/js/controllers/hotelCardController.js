@@ -1,14 +1,14 @@
 app.
   controller('hotelCardController', ['$scope', '$state', '$stateParams', '$ionicModal', '$ionicPopup',
     function ($scope, $state, $stateParams, $ionicModal, $ionicPopup) {
-      $scope.id = $stateParams.id
-      $scope.name = $stateParams.name
-      $scope.city = $stateParams.city
-      $scope.imgSrc = $stateParams.img
-      $scope.score = $stateParams.score
-      $scope.price = $stateParams.price
-      $scope.animals = $stateParams.animals
-      $scope.smoke = $stateParams.smoke
+      $scope.$on('$ionicView.beforeEnter', function () {
+        $scope.hotel = $stateParams.hotel
+
+        if(!$scope.hotel) {
+          $state.go('main')
+        }
+      })
+
       $scope.gotoMain = gotoMain
       $scope.closeModal = closeModal
       $scope.openModal = openModal
@@ -37,13 +37,13 @@ app.
       }
 
       function gotoMain() {
-        return $state.go('main')
+        $state.go('main')
       }
 
       function showPopup() {
         let alertPopup = $ionicPopup.alert({
-          title: `<h1>Hey ya!</h1>`,
-          template: `<p>You are booked ${$scope.name} ${$scope.city}</p> `
+          title: `<h1>Hey ya!</h1>
+          You are booked ${$scope.hotel.name} ${$scope.hotel.city}`,
         });
       }
     }])

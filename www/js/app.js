@@ -29,19 +29,21 @@ app
     });
   })
 
-
-
   .config(function ($stateProvider, $urlRouterProvider) {
-
 
     $stateProvider
       .state('main', {
         url: '/',
+        cache: false,
         templateUrl: 'templates/hotelsList.html',
         controller: 'hotelsListController'
       })
       .state('hotelCard', {
-        url: '/hotelCard/:id/:name/:city/:img/:price/:smoke/:animals/:score',
+        url: '/hotelCard/hotel',
+        cache: false,
+        params: {
+          hotel: null
+        },
         templateUrl: 'templates/hotelCard.html',
         controller: 'hotelCardController'
       })

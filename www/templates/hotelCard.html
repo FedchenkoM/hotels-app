@@ -2,12 +2,12 @@
   <ion-card>
     <ion-back-button ng-click=gotoMain()></ion-back-button>
     <ion-card-header>
-      <ion-card-title class="ion-padding-bottom ion-text-uppercase">{{name}} | {{city}} | &#10051;{{score}}
+      <ion-card-title class="ion-padding-bottom ion-text-uppercase">{{hotel.name}} | {{hotel.city}} | &#10051;{{hotel.score}}
       </ion-card-title>
-      <img ng-src={{imgSrc}} alt="{{name}}">
+      <img ng-src={{hotel.img}} alt="{{hotel.name}}">
       <img class="_smallIMG" ng-if="animals=='false'" ng-src="img/no-pets-svgrepo-com.svg">
       <img class="_smallIMG " ng-if="smoke=='false'" ng-src="img/no-smoking-svgrepo-com.svg">
-      <ion-button color="secondary" expand="full" ng-click="openModal()">Book for &#8364;{{price}}</ion-button>
+      <ion-button color="secondary" expand="full" ng-click="openModal()">Book for &#8364;{{hotel.price}}</ion-button>
     </ion-card-header>
     <ion-card-content>
       Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident esse laudantium aliquam harum corrupti,
@@ -17,7 +17,6 @@
       temporibus explicabo fugit culpa, saepe ducimus, quos mollitia voluptatibus libero, exercitationem hic odit.
       Excepturi ipsa pedita animi provident quibusdam ex quaerat voluptate repellat, tempora temporibus sint adipisci?
       Earum excepturi dicta nihil nostrum sunt voluptatem.
-      Atque, vitae consectetur animi odit amet fugit blanditiis quis id dolore et vel ullam, repellat tenetur ipsum, qui
       ab perferendis ex harum.
       Aliam cum quod non. Consectetur vel ducimus officiis assumenda cupiditate sapiente, illum ex, tenetur ratione fuga
       quasi doloribus cum deserunt odit dolore!

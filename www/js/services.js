@@ -1,55 +1,49 @@
 app
   .factory('hotelListHttpSrvc', function ($http, $q) {
     return {
-      getHotelsList: getHotelsList
+      getHotelsList
     }
 
     function getHotelsList() {
       let deferred = $q.defer()
 
-      try {
-        $http.get('hotels-list/hotels-list.json')
-          .then(data => deferred.resolve(data.data))
-      } catch (error) {
-        let errorMsg = 'Неизвестная ошибка'
-        switch (error.status) {
-          case 400 || 401 || 403:
-            errorMsg = 'Некорректный запрос';
-            break;
-          case 404:
-            errorMsg = 'Сервер не найден';
-            break;
-          case 407:
-            errorMsg = 'Истекло время ожидания';
-            break;
-          case 410:
-            errorMsg = 'Данные удалены';
-            break;
-          case 503:
-            errorMsg = 'Сервер недоступен';
-            break;
-        }
-        deferred.reject(errorMsg)
-      }
+      $http.get('hotels-list/hotels-list.json')
+        .then(data => deferred.resolve(data.data))
+        .catch(error => {
+          let errorMsg = 'Неизвестная ошибка'
+          switch (error.status) {
+            case 400 || 401 || 403:
+              errorMsg = 'Некорректный запрос';
+              break;
+            case 404:
+              errorMsg = 'Сервер не найден';
+              break;
+            case 407:
+              errorMsg = 'Истекло время ожидания';
+              break;
+            case 410:
+              errorMsg = 'Данные удалены';
+              break;
+            case 503:
+              errorMsg = 'Сервер недоступен';
+              break;
+          }
+          deferred.reject(errorMsg)
+        })
       return deferred.promise
     }
   })
 
   .factory('toBook', function ($state, $stateParams) {
     return {
-      toBook: toBook
-    }
-
-    function toBook(hotelInfo) {
-      $state.go('hotelCard', hotelInfo)
+      toBook: (hotel) => $state.go('hotelCard', { hotel })
     }
   })
 
   .factory('localStorageSrvc', function () {
     return {
-      hasHotelInLocalStorage: hasHotelInLocalStorage,
-      // hasDateCollision: hasDateCollision,
-      getDateInLocalStorage: getDateInLocalStorage
+      hasHotelInLocalStorage,
+      getDateInLocalStorage
     }
 
     // function hasDateCollision(dateStorage, currentStartDate, currentEndDate) {
@@ -92,11 +86,11 @@ app
     let year = data.getFullYear()
 
     return {
-      dateEnd: setDateEnd,
+      dateEnd,
       setToday: () => `${year}-${month}-${day}`
     }
 
-    function setDateEnd(dateStart, numOfDays) {
+    function dateEnd(dateStart, numOfDays) {
       const date = new Date(dateStart.getFullYear(), dateStart.getMonth(), dateStart.getDate() + numOfDays)
       return {
         year: date.getFullYear(),
