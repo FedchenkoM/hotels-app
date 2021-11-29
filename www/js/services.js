@@ -44,7 +44,8 @@ app
     return {
       hasHotelInLocalStorage,
       getBookedHotelsList,
-      setHotelToLocalStorage
+      setHotelToLocalStorage,
+      hasDateCollision
     }
 
     function setHotelToLocalStorage(newBookedHotel) {
@@ -53,19 +54,69 @@ app
       window.localStorage.setItem('bookedHotels', JSON.stringify(bookedList))
     }
 
-    function getBookedHotelsList() {
-      let bookedHotels
-
-      if (window.localStorage.getItem('bookedHotels')) {
-        bookedHotels = JSON.parse(window.localStorage.getItem('bookedHotels'))
+    function hasDateCollision(hotel) {
+      const bookedHotels = getBookedHotelsList(hotel.id)
+      if (!bookedHotels.length) {
+        return false
       } else {
-        bookedHotels = []
+        const curHotelDateCheckin = new Date(hotel.dateStart.year, hotel.dateStart.month + 1, hotel.dateStart.day)
+        const curHotelDateCheckout = new Date(hotel.dateEnd.year, hotel.dateEnd.month + 1, hotel.dateEnd.day)
+
+        let curHotel = 0
+
+        while (curHotel < bookedHotels.length) {
+          let bookedHotel = bookedHotels[curHotel]
+
+          const hotelDateCheckin = new Date(bookedHotel.dateStart.year, bookedHotel.dateStart.month + 1, bookedHotel.dateStart.day)
+          const hotelDateCheckout = new Date(bookedHotel.dateEnd.year, bookedHotel.dateEnd.month + 1, bookedHotel.dateEnd.day)
+
+          if ((curHotelDateCheckin >= hotelDateCheckin && curHotelDateCheckin <= hotelDateCheckout)
+            || (curHotelDateCheckout >= hotelDateCheckin && curHotelDateCheckout <= hotelDateCheckout)
+            || (curHotelDateCheckin <= curHotelDateCheckin && curHotelDateCheckout >= hotelDateCheckout)) {
+            return true
+            break
+          } else {
+            curHotel++
+          }
+          return false
+        }
       }
+    }
+
+    function getBookedHotelsList(hotelId = null) {
+      let bookedHotels
+      if (!hotelId) {
+        if (window.localStorage.getItem('bookedHotels')) {
+          bookedHotels = JSON.parse(window.localStorage.getItem('bookedHotels'))
+        } else {
+          bookedHotels = []
+        }
+      } else {
+        if (window.localStorage.getItem('bookedHotels')) {
+          let hotels = JSON.parse(window.localStorage.getItem('bookedHotels'))
+          bookedHotels = hotels.filter(hotel => hotel.id === hotelId)
+        } else {
+          bookedHotels = []
+        }
+      }
+
       return bookedHotels
     }
 
     function hasHotelInLocalStorage(hotelId) {
-      return localStorage.getItem(hotelId) !== null ? true : false
+      const hotels = getBookedHotelsList()
+      let curHotel = 0
+      while (curHotel < hotels.length) {
+        let cur = hotels[curHotel]
+
+        if (cur.id === hotelId) {
+          return true
+          break
+        } else {
+          curHotel++
+        }
+        return false
+      }
     }
   })
 

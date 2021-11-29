@@ -14,7 +14,7 @@
       <ion-content>
         <section class="hotels-list">
           <span ng-if="error" class="assertive">{{error}}</span>
-          <div ng-repeat="hotel in hotelsList" ng-click="toBook(hotel)" class="hotel__card">
+          <div ng-repeat="hotel in hotelsList"  ng-click="toBook(hotel)" class="hotel__card">
             <img ng-src={{hotel.img}} alt={{hotel.name}}>
             <div class="hotel__description">
               <h2 class="description__header">{{hotel.city}} | {{hotel.name}} </h2>
@@ -35,7 +35,6 @@
       <ion-content>
         <ion-list class="side-menu">
           <ul class="list">
-            <li ng-click="" class="item">Filters</li>
             <li ng-click="toBookedHotels()" class="item">Booked list</li>
           </ul>
         </ion-list>
