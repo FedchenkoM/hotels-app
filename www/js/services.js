@@ -44,20 +44,24 @@ app
     return {
       hasHotelInLocalStorage,
       getBookedHotelsList,
-      removeHotel
+      setHotelToLocalStorage
     }
 
-    function removeHotel(id) {
-      localStorage.removeItem(id)
+    function setHotelToLocalStorage(newBookedHotel) {
+      let bookedList = getBookedHotelsList()
+      bookedList.push(newBookedHotel)
+      window.localStorage.setItem('bookedHotels', JSON.stringify(bookedList))
     }
 
     function getBookedHotelsList() {
-      let hotels = []
-      let keys = Object.keys(localStorage)
+      let bookedHotels
 
-      keys.forEach(id => hotels.push(JSON.parse(localStorage.getItem(id))))
-
-      return hotels
+      if (window.localStorage.getItem('bookedHotels')) {
+        bookedHotels = JSON.parse(window.localStorage.getItem('bookedHotels'))
+      } else {
+        bookedHotels = []
+      }
+      return bookedHotels
     }
 
     function hasHotelInLocalStorage(hotelId) {
