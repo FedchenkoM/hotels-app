@@ -9905,7 +9905,10 @@ a.button {
   color: #9c7efe; }
 
 .my-modal {
-  margin-top: 43px; }
+  margin-top: 43px;
+  padding-bottom: 30px;
+  max-height: 100vh;
+  overflow-y: auto; }
   .my-modal .input-label {
     font-size: 130%; }
   .my-modal input::-webkit-input-placeholder {

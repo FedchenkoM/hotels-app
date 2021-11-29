@@ -60,6 +60,9 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 .my-modal {
   margin-top: 43px;
+  padding-bottom: 30px;
+  max-height: 100vh;
+  overflow-y: auto;
   .input-label {
     font-size: 130%;
   }
