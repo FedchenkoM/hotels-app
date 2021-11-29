@@ -2,7 +2,6 @@ app.controller('hotelCardController', ['$scope', '$state', '$stateParams', '$ion
     function ($scope, $state, $stateParams, $ionicModal, $ionicPopup) {
       $scope.$on('$ionicView.beforeEnter', function () {
         $scope.hotel = $stateParams.hotel
-
         if(!$scope.hotel) {
           $state.go('main')
         }
@@ -43,6 +42,6 @@ app.controller('hotelCardController', ['$scope', '$state', '$stateParams', '$ion
         let alertPopup = $ionicPopup.alert({
           title: `<h1>Hey ya!</h1>
           You are booked ${$scope.hotel.name} ${$scope.hotel.city}`,
-        });
+        })
       }
     }])

@@ -4,14 +4,15 @@
     <h1 class="title">Your booked hotels list: </h1>
   </div>
   <div class="list _booked-hotels-list">
-    <a ng-repeat="hotel in hotels" class="item item-thumbnail-left" href="#">
+      <h4 ng-if="!hotels.length" class="ion-padding-start calm">You have no booked hotels :(</h4>
+    <a ng-repeat="hotel in hotels track by $index" class="item item-thumbnail-left" href="#">
       <img ng-src={{hotel.img}}>
       <h2>{{hotel.city}} | {{hotel.name}}</h2>
       <p>Checkin date: {{hotel.dateStart.day}}.{{hotel.dateStart.month}}.{{hotel.dateStart.year}}</p>
       <p>Checkout date: {{hotel.dateEnd.day}}.{{hotel.dateEnd.month}}.{{hotel.dateEnd.year}}</p>
       <p>Number of persons: {{hotel.numOfPersons}}</p>
       <p>Total sum: &#8364;{{hotel.totalSum}}</p>
-      <button ng-click='removeHotel({{hotel.id}})' class="button button-outline button-assertive">
+      <button ng-click='remove($index)' class="button button-outline button-assertive">
         cancel reservation
       </button>
     </a>
