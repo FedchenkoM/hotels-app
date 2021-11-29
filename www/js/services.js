@@ -1,44 +1,45 @@
-app
-  .factory('hotelListHttpSrvc', function ($http, $q) {
-    return {
-      getHotelsList
-    }
+app.factory('hotelListHttpSrvc', function ($http, $q) {
+  return {
+    getHotelsList
+  }
 
-    function getHotelsList() {
-      let deferred = $q.defer()
+  function getHotelsList() {
+    let deferred = $q.defer()
 
-      $http.get('hotels-list/hotels-list.json')
-        .then(data => deferred.resolve(data.data))
-        .catch(error => {
-          let errorMsg = 'Неизвестная ошибка'
-          switch (error.status) {
-            case 400 || 401 || 403:
-              errorMsg = 'Некорректный запрос';
-              break;
-            case 404:
-              errorMsg = 'Сервер не найден';
-              break;
-            case 407:
-              errorMsg = 'Истекло время ожидания';
-              break;
-            case 410:
-              errorMsg = 'Данные удалены';
-              break;
-            case 503:
-              errorMsg = 'Сервер недоступен';
-              break;
-          }
-          deferred.reject(errorMsg)
-        })
-      return deferred.promise
-    }
-  })
+    $http.get('hotels-list/hotels-list.json')
+      .then(data => deferred.resolve(data.data))
+      .catch(error => {
+        let errorMsg = 'Неизвестная ошибка'
+        switch (error.status) {
+          case 400 || 401 || 403:
+            errorMsg = 'Некорректный запрос';
+            break;
+          case 404:
+            errorMsg = 'Сервер не найден';
+            break;
+          case 407:
+            errorMsg = 'Истекло время ожидания';
+            break;
+          case 410:
+            errorMsg = 'Данные удалены';
+            break;
+          case 503:
+            errorMsg = 'Сервер недоступен';
+            break;
+        }
+        deferred.reject(errorMsg)
+      })
+    return deferred.promise
+  }
+})
+
 
   .factory('toBook', function ($state, $stateParams) {
     return {
       toBook: (hotel) => $state.go('hotelCard', { hotel })
     }
   })
+
 
   .factory('localStorageSrvc', function ($state) {
     return {
@@ -72,7 +73,7 @@ app
 
           if ((curHotelDateCheckin >= hotelDateCheckin && curHotelDateCheckin <= hotelDateCheckout)
             || (curHotelDateCheckout >= hotelDateCheckin && curHotelDateCheckout <= hotelDateCheckout)
-            || (curHotelDateCheckin <= curHotelDateCheckin && curHotelDateCheckout >= hotelDateCheckout)) {
+            || (curHotelDateCheckin <= hotelDateCheckin && curHotelDateCheckout >= hotelDateCheckout)) {
             return true
             break
           } else {
@@ -119,6 +120,7 @@ app
       }
     }
   })
+
 
   .factory('dataService', function () {
     let data = new Date()
