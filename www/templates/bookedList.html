@@ -5,7 +5,7 @@
   </div>
   <div class="list _booked-hotels-list">
       <h4 ng-if="!hotels.length" class="ion-padding-start calm">You have no booked hotels :(</h4>
-    <a ng-repeat="hotel in hotels track by $index" class="item item-thumbnail-left" href="#">
+    <a ng-repeat="hotel in hotels track by $index" class="item item-thumbnail-left">
       <img ng-src={{hotel.img}}>
       <h2>{{hotel.city}} | {{hotel.name}}</h2>
       <p>Checkin date: {{hotel.dateStart.day}}.{{hotel.dateStart.month}}.{{hotel.dateStart.year}}</p>
