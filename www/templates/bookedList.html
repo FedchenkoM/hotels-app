@@ -1,11 +1,10 @@
 <ion-view>
   <div class="bar bar-header">
     <a ng-click="goToMain()" class="button icon-left ion-chevron-left button-clear button-dark"></a>
-    <h1 class="title">Your booked hotels list: </h1>
+    <h1 ng-if="hotels.length" class="title">Your booked hotels list<h1 class="title" ng-if="!hotels.length"> You have no booked hotels</h1> </h1>
   </div>
   <div class="list _booked-hotels-list">
-      <h4 ng-if="!hotels.length" class="ion-padding-start calm">You have no booked hotels :(</h4>
-    <a ng-repeat="hotel in hotels track by $index" class="item item-thumbnail-left">
+    <a ng-repeat="hotel in hotels track by $index" class="item item-thumbnail-left animated">
       <img ng-src={{hotel.img}}>
       <h2>{{hotel.city}} | {{hotel.name}}</h2>
       <p>Checkin date: {{hotel.dateStart.day}}.{{hotel.dateStart.month}}.{{hotel.dateStart.year}}</p>

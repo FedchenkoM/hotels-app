@@ -25,7 +25,6 @@ app.controller('bookingModalController', ['$scope', '$state', 'dataService', 'lo
       $scope.dateCollision = localStorageSrvc.hasDateCollision(bookInfo)
 
       if (!$scope.dateCollision) {
-        localStorageSrvc.hasHotelInLocalStorage($scope.hotel.id)
         localStorageSrvc.setHotelToLocalStorage(bookInfo)
         $scope.closeModal().then($scope.showResume)
       } else {
