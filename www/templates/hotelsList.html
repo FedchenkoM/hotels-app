@@ -1,12 +1,16 @@
 <ion-view>
   <ion-side-menus>
     <ion-side-menu-content>
-      <ion-toolbar class="ion-padding-start">
-        <ion-text class="ion-no-margin">
-          <h1 class="main_header ion-no-margin">Hotels.fed</h1>
-        </ion-text>
+      <ion-toolbar>
+        <h1 class="main_header  ion-padding-start ">Hotels.fed <div class="bar bar-header ion-no-padding item-input-inset ">
+            <label class="item-input-wrapper">
+              <i class="icon ion-ios-search placeholder-icon"></i>
+              <input type="search" ng-model="hotel.city" placeholder="Search by city">
+            </label>
+          </div>
+        </h1>
         <ion-buttons slot="end">
-          <ion-button ng-click="toggleRight()">
+          <ion-button  ng-click="toggleRight()">
             <ion-icon color="secondary" size="large" name="reorder-four-outline"></ion-icon>
           </ion-button>
         </ion-buttons>
@@ -14,7 +18,7 @@
       <ion-content>
         <section class="hotels-list">
           <span ng-if="error" class="assertive">{{error}}</span>
-          <div ng-repeat="hotel in hotelsList"  ng-click="toBook(hotel)" class="hotel__card">
+          <div ng-repeat="hotel in hotelsList | filter:hotel.city" ng-click="toBook(hotel)" class="hotel__card">
             <img ng-src={{hotel.img}} alt={{hotel.name}}>
             <div class="hotel__description">
               <h2 class="description__header">{{hotel.city}} | {{hotel.name}} </h2>
