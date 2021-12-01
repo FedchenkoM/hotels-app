@@ -1,7 +1,7 @@
 <ion-view>
   <div class="bar bar-header">
     <a ng-click="goToMain()" class="button icon-left ion-chevron-left button-clear button-dark"></a>
-    <h1 ng-if="hotels.length" class="title">Your booked hotels list<h1 class="title" ng-if="!hotels.length"> You have no booked hotels</h1> </h1>
+  <h1 ng-if="hotels.length" class="title">Your booked hotels list<h1 class="title" ng-if="!hotels.length"> You have no booked hotels :(</h1>
   </div>
   <div class="list _booked-hotels-list">
     <a ng-repeat="hotel in hotels track by $index" class="item item-thumbnail-left animated">
