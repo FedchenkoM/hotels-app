@@ -9862,13 +9862,14 @@ a.button {
   overflow-y: scroll; }
 
 .main_header {
-  color: #4bbade; }
+  color: #4bbade;
+  margin: 4px 0; }
 
 ._booked-hotels-list {
   margin-top: 45px; }
 
 .hotels-list {
-  padding: 70px 10px 10px 10px; }
+  padding: 80px 9px 9px 9px; }
 
 .hotel__card {
   width: 100%;

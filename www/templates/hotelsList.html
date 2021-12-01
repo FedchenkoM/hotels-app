@@ -2,24 +2,24 @@
   <ion-side-menus>
     <ion-side-menu-content>
       <ion-toolbar>
-        <h1 class="main_header  ion-padding-start ">Hotels.fed <div
-            class="bar bar-header ion-no-padding item-input-inset ">
+        <ion-buttons slot="start">
+          <ion-button ng-click="toggleLeft()">
+            <ion-icon color="secondary" size="large" name="reorder-four-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <h1 class="main_header">Hotels.fed
+          <div class="bar bar-header ion-no-padding item-input-inset ">
             <label class="item-input-wrapper">
               <i class="icon ion-ios-search placeholder-icon"></i>
               <input type="search" ng-model="hotel.city" placeholder="Search by city">
             </label>
           </div>
         </h1>
-        <ion-buttons slot="end">
-          <ion-button ng-click="toggleRight()">
-            <ion-icon color="secondary" size="large" name="reorder-four-outline"></ion-icon>
-          </ion-button>
-        </ion-buttons>
       </ion-toolbar>
       <ion-content>
         <section class="hotels-list">
           <span ng-if="error" class="assertive">{{error}}</span>
-          <div ng-repeat="hotel in hotelsList | sortFilter: selected" ng-click="toBook(hotel)" class="hotel__card">
+          <div ng-repeat="hotel in hotelsList | sortFilter: selected | filter: hotel.city" ng-click="toBook(hotel)" class="hotel__card">
             <img ng-src={{hotel.img}} alt={{hotel.name}}>
             <div class="hotel__description">
               <h2 class="description__header">{{hotel.city}} | {{hotel.name}} </h2>
@@ -36,15 +36,17 @@
         </section>
       </ion-content>
     </ion-side-menu-content>
-    <ion-side-menu side="right">
+    <ion-side-menu side="left">
       <ion-content>
         <ion-list class="side-menu">
           <ul class="list">
-            <li ng-click="toBookedHotels()" class="item">Booked list</li>
-            <li class="item"> Sort by
-              <select  ng-model="selected" ng-change="changeSelected(selected)" ng-options="option for option in sortOptions">
+            <li class="item" ng-click="toBookedHotels()">Booked list</li>
+            <li class="item">Sort by {{selected}}
+              <select ng-model="selected" ng-change="changeSelected(selected)"
+                ng-options="option for option in sortOptions">
               </select>
             </li>
+            <li class="item" ng-click="toggleLeft()"><ion-icon name="arrow-redo-outline"></ion-icon></li>
           </ul>
         </ion-list>
       </ion-content>
