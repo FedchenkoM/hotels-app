@@ -4,7 +4,6 @@ app.controller('bookingModalController', ['$scope', '$state', 'dataService', 'lo
     $scope.submitToLocalStorage = submitBook
     $scope.setCollision = setCollision
 
-
     function setCollision(){
       $scope.dateCollision = false
     }
