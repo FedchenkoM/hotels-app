@@ -2,7 +2,11 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 @import "www/lib/ionic/scss/ionic";
 .pane {
-  overflow-y: scroll;
+  overflow-y: auto;
+}
+
+a {
+ text-decoration: none;
 }
 
 .main_header {

@@ -8,7 +8,8 @@
     "smoke": false,
     "animals": true,
     "score": 8.2,
-    "img": "img/four-seasons-hotel-moscow.jpg"
+    "img": "img/four-seasons-hotel-moscow.jpg",
+    "phone": "+71769284768"
   },
   {
     "id": 2,
@@ -19,7 +20,8 @@
     "smoke": true,
     "animals": true,
     "score": 8.4,
-    "img": "img/aerial-sheraton-paris.jpg"
+    "img": "img/aerial-sheraton-paris.jpg",
+    "phone": "+71769284768"
   },
   {
     "id": 3,
@@ -30,7 +32,8 @@
     "smoke": false,
     "animals": false,
     "score": 8.0,
-    "img":"img/caption-yalta.jpg"
+    "img":"img/caption-yalta.jpg",
+    "phone": "+71769284768"
   },
   {
     "id": 4,
@@ -41,7 +44,8 @@
     "smoke": true,
     "animals": true,
     "score": 8.2,
-    "img": "img/exterior-hilton-paris.jpg"
+    "img": "img/exterior-hilton-paris.jpg",
+    "phone": "+71769284768"
   },
   {
     "id": 5,
@@ -52,7 +56,8 @@
     "smoke": true,
     "animals": false,
     "score": 9.5,
-    "img":"img/exterior-view-keln.jpg"
+    "img":"img/exterior-view-keln.jpg",
+    "phone": "+71769284768"
   },
   {
     "id": 6,
@@ -63,7 +68,8 @@
     "smoke": true,
     "animals": true,
     "score": 8.9,
-    "img": "img/exterior-warshava.jpg"
+    "img": "img/exterior-warshava.jpg",
+    "phone": "+71769284768"
   },
   {
     "id": 7,
@@ -74,7 +80,8 @@
     "smoke": false,
     "animals": true,
     "score": 6.3,
-    "img": "img/getlstd-property-photo-urgup.jpg"
+    "img": "img/getlstd-property-photo-urgup.jpg",
+    "phone": "+71769284768"
   },
   {
     "id": 8,
@@ -85,7 +92,8 @@
     "smoke": false,
     "animals": false,
     "score": 9.9,
-    "img":"img/hotel-santa-maria-roma.jpg"
+    "img":"img/hotel-santa-maria-roma.jpg",
+    "phone": "+71769284768"
   },
   {
     "id": 9,
@@ -96,7 +104,8 @@
     "smoke": true,
     "animals": true,
     "score": 7.7,
-    "img":"img/hotel-wellton-riga.jpg"
+    "img":"img/hotel-wellton-riga.jpg",
+    "phone": "+71769284768"
   },
   {
     "id": 10,
@@ -107,7 +116,8 @@
     "smoke": true,
     "animals": true,
     "score": 9.3,
-    "img": "img/lounge-and-bar-bruxelle.jpg"
+    "img": "img/lounge-and-bar-bruxelle.jpg",
+    "phone": "+71769284768"
   },
   {
     "id": 11,
@@ -118,7 +128,8 @@
     "smoke": true,
     "animals": true,
     "score": 5.6,
-    "img": "img/kelebek-fairy-chimneys-goreme.jpg"
+    "img": "img/kelebek-fairy-chimneys-goreme.jpg",
+    "phone": "+71769284768"
   },
   {
     "id": 12,
@@ -129,6 +140,7 @@
     "smoke": true,
     "animals": true,
     "score": 9.6,
-    "img": "img/vienna-house-easy-osnabruck.jpg"
+    "img": "img/vienna-house-easy-osnabruck.jpg",
+    "phone": "+71769284768"
   }
 ]

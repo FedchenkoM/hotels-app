@@ -9859,7 +9859,10 @@ a.button {
   transition-duration: 0s; }
 
 .pane {
-  overflow-y: scroll; }
+  overflow-y: auto; }
+
+a {
+  text-decoration: none; }
 
 .main_header {
   color: #4bbade;
