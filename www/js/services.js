@@ -12,19 +12,19 @@ app.factory('hotelListHttpSrvc', function ($http, $q) {
         let errorMsg = 'Неизвестная ошибка'
         switch (error.status) {
           case 400 || 401 || 403:
-            errorMsg = 'Некорректный запрос';
+            errorMsg = 'Invalid request';
             break;
           case 404:
-            errorMsg = 'Сервер не найден';
+            errorMsg = 'Server not found';
             break;
           case 407:
-            errorMsg = 'Истекло время ожидания';
+            errorMsg = 'Timeout expired';
             break;
           case 410:
-            errorMsg = 'Данные удалены';
+            errorMsg = 'Data deleted';
             break;
           case 503:
-            errorMsg = 'Сервер недоступен';
+            errorMsg = 'Server is not available';
             break;
         }
         deferred.reject(errorMsg)
@@ -34,14 +34,19 @@ app.factory('hotelListHttpSrvc', function ($http, $q) {
 })
 
 
-  .factory('toBook', function ($state, $stateParams) {
+  .factory('navSrvc', function ($state) {
     return {
-      toBook: (hotel) => $state.go('hotelCard', { hotel })
+      toBook: (hotel) => $state.go('hotelCard', { hotel }),
+      goToMain
+    }
+
+    function goToMain() {
+      $state.go('main')
     }
   })
 
 
-  .factory('localStorageSrvc', function ($state) {
+  .factory('localStorageSrvc', function () {
     return {
       hasHotelInLocalStorage,
       getBookedHotelsList,
@@ -52,7 +57,7 @@ app.factory('hotelListHttpSrvc', function ($http, $q) {
     function setHotelToLocalStorage(newBookedHotel) {
       let bookedList = getBookedHotelsList()
       bookedList.push(newBookedHotel)
-      window.localStorage.setItem('bookedHotels', JSON.stringify(bookedList))
+      window.localStorage.setItem('bookedHotels', angular.toJson(bookedList))
     }
 
     function hasDateCollision(hotel) {
@@ -75,7 +80,6 @@ app.factory('hotelListHttpSrvc', function ($http, $q) {
             || (curHotelDateCheckout >= hotelDateCheckin && curHotelDateCheckout <= hotelDateCheckout)
             || (curHotelDateCheckin <= hotelDateCheckin && curHotelDateCheckout >= hotelDateCheckout)) {
             return true
-            break
           } else {
             curHotel++
           }
@@ -88,19 +92,18 @@ app.factory('hotelListHttpSrvc', function ($http, $q) {
       let bookedHotels
       if (!hotelId) {
         if (window.localStorage.getItem('bookedHotels')) {
-          bookedHotels = JSON.parse(window.localStorage.getItem('bookedHotels'))
+          bookedHotels = angular.fromJson(window.localStorage.getItem('bookedHotels'))
         } else {
           bookedHotels = []
         }
       } else {
         if (window.localStorage.getItem('bookedHotels')) {
-          let hotels = JSON.parse(window.localStorage.getItem('bookedHotels'))
+          let hotels = angular.fromJson(window.localStorage.getItem('bookedHotels'))
           bookedHotels = hotels.filter(hotel => hotel.id === hotelId)
         } else {
           bookedHotels = []
         }
       }
-
       return bookedHotels
     }
 
@@ -112,7 +115,6 @@ app.factory('hotelListHttpSrvc', function ($http, $q) {
 
         if (cur.id === hotelId) {
           return true
-          break
         } else {
           curHotel++
         }
@@ -122,15 +124,19 @@ app.factory('hotelListHttpSrvc', function ($http, $q) {
   })
 
 
-  .factory('dataService', function () {
-    let data = new Date()
-    let day = data.getDate()
-    let month = data.getMonth() + 1
-    let year = data.getFullYear()
+  .factory('dateService', function () {
+    let date = new Date()
+    let day = date.getDate()
+    let month = date.getMonth() + 1
+    let year = date.getFullYear()
 
     return {
       dateEnd,
-      setToday: () => `${year}-${month}-${day}`
+      setToday
+    }
+
+    function setToday() {
+      return `${year}-${month}-${day}`
     }
 
     function dateEnd(dateStart, numOfDays) {
