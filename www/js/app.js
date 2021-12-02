@@ -1,36 +1,32 @@
 let app = angular.module('hotels', ['ionic'])
 
-app
-  .run(function ($ionicPlatform, $rootScope, $ionicLoading) {
+app.run(function ($ionicPlatform, $rootScope, $ionicLoading) {
+  $ionicPlatform.ready(function () {
+    if (window.cordova && window.Keyboard) {
+      window.Keyboard.hideKeyboardAccessoryBar(true);
+    }
 
-    $ionicPlatform.ready(function () {
+    if (window.StatusBar) {
+      StatusBar.styleDefault();
+    }
+  });
 
-      if (window.cordova && window.Keyboard) {
-        window.Keyboard.hideKeyboardAccessoryBar(true);
-      }
+  $rootScope.$on("$stateChangeStart", () => {
+    $ionicLoading.show({
+      template: "Loading..."
+    })
 
-      if (window.StatusBar) {
-        StatusBar.styleDefault();
-      }
-    });
+    $rootScope.$on("$stateChangeSuccess", () => {
+      $ionicLoading.hide()
+    })
 
-    $rootScope.$on("$stateChangeStart", () => {
-      $ionicLoading.show({
-        template: "Loading..."
-      })
-
-      $rootScope.$on("$stateChangeSuccess", () => {
-        $ionicLoading.hide()
-      })
-
-      $rootScope.$on("$stateChangeError", () => {
-        $ionicLoading.hide();
-      })
-    });
-  })
+    $rootScope.$on("$stateChangeError", () => {
+      $ionicLoading.hide();
+    })
+  });
+})
 
   .config(function ($stateProvider, $urlRouterProvider) {
-
     $stateProvider
       .state('main', {
         url: '/',
@@ -49,7 +45,7 @@ app
       })
       .state('bookedList', {
         url: '/bookedList',
-        templateUrl:'templates/bookedList.html',
+        templateUrl: 'templates/bookedList.html',
         controller: 'bookedHotelsListController'
       })
     $urlRouterProvider.otherwise("/");
