@@ -1,19 +1,8 @@
 app.controller('bookingModalController', ['$scope', 'dateHelper', 'localStorageHelper',
   function ($scope, dateHelper, localStorageHelper) {
     $scope.today = dateHelper.setToday()
-    $scope.submitToLocalStorage = submitBook
-    $scope.setCollision = setCollision
-    $scope.changeDate = changeDate
 
-    function setCollision(){
-      $scope.dateCollision = false
-    }
-
-    function changeDate() {
-      $scope.startDayNotValid = Date.parse($scope.dateStart) < Date.parse($scope.today)
-    }
-
-    function submitBook() {
+    $scope.submitToLocalStorage = () => {
       let bookInfo = {
         ...$scope.hotel,
         dateStart: {
@@ -21,7 +10,7 @@ app.controller('bookingModalController', ['$scope', 'dateHelper', 'localStorageH
           month: $scope.dateStart.getMonth() + 1,
           day: $scope.dateStart.getDate()
         },
-        dateEnd: dateService.dateEnd($scope.dateStart, $scope.numOfDays),
+        dateEnd: dateHelper.dateEnd($scope.dateStart, $scope.numOfDays),
         totalSum: $scope.numOfDays * $scope.numOfPersons * +$scope.hotel.price,
         numOfPersons: $scope.numOfPersons
       }
@@ -34,5 +23,11 @@ app.controller('bookingModalController', ['$scope', 'dateHelper', 'localStorageH
         $scope.dateCollision = true
         $scope.bookedHotelsById = localStorageHelper.getBookedHotelsList($scope.hotel.id)
       }
+    }
+
+    $scope.setCollision = () => $scope.dateCollision = false
+
+    $scope.changeDate = () => {
+      $scope.startDayNotValid = Date.parse($scope.dateStart) < Date.parse($scope.today)
     }
   }])

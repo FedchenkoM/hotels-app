@@ -6,13 +6,13 @@ app.controller('bookedHotelsListController', ['$scope', 'localStorageHelper', '$
 
     $scope.goToMain = navHelper.goToMain
 
-    $scope.remove = function (index) {
+    $scope.remove = (index) => {
       $scope.hotels.splice(index, 1)
       window.localStorage.setItem('bookedHotels', angular.toJson($scope.hotels))
       setTimeout($scope.showResume, 300)
     }
 
-    $scope.showResume = function showPopup() {
+    $scope.showResume = () => {
       $ionicPopup.alert({
         title: `<h3>You canceled your booking </h3>`
       })

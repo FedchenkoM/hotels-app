@@ -8,35 +8,22 @@ app.controller('hotelCardController', ['$scope', '$stateParams', '$ionicModal', 
     })
 
     $scope.goToMain = navHelper.goToMain
-    $scope.closeModal = closeModal
-    $scope.openModal = openModal
-    $scope.showResume = showPopup
 
-    if (!$scope.modal) {
-      initModal()
-    }
+    $scope.closeModal = () => $scope.modal.remove()
 
-    function initModal() {
+    $scope.openModal = () => {
       return $ionicModal.fromTemplateUrl('templates/bookingModal.html', {
         scope: $scope,
         animation: 'slide-in-up'
       }).then(function (modal) {
-        $scope.modal = modal;
+        $scope.modal = modal
+      }).then(function () {
+        $scope.modal.show()
       })
     }
 
-    function openModal() {
-      $scope.modal.show();
-    }
-
-    function closeModal() {
-      return $scope.modal.remove().then(initModal)
-    }
-
-    function showPopup() {
-      $ionicPopup.alert({
-        title: `<h1>Hey ya!</h1>
+    $scope.showResume = () => $ionicPopup.alert({
+      title: `<h1>Hey ya!</h1>
           You are booked ${$scope.hotel.name} ${$scope.hotel.city}`,
-      })
-    }
+    })
   }])
