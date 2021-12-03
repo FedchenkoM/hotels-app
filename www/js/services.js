@@ -1,4 +1,4 @@
-app.factory('hotelListHttpSrvc', function ($http, $q) {
+app.factory('hotelListHttpHelper', function ($http, $q) {
   return {
     getHotelsList
   }
@@ -34,7 +34,7 @@ app.factory('hotelListHttpSrvc', function ($http, $q) {
 })
 
 
-  .factory('navSrvc', function ($state) {
+  .factory('navHelper', function ($state) {
     return {
       toBook: (hotel) => $state.go('hotelCard', { hotel }),
       goToMain
@@ -46,7 +46,7 @@ app.factory('hotelListHttpSrvc', function ($http, $q) {
   })
 
 
-  .factory('localStorageSrvc', function () {
+  .factory('localStorageHelper', function () {
     return {
       hasHotelInLocalStorage,
       getBookedHotelsList,
@@ -124,7 +124,7 @@ app.factory('hotelListHttpSrvc', function ($http, $q) {
   })
 
 
-  .factory('dateService', function () {
+  .factory('dateHelper', function () {
     let date = new Date()
     let day = date.getDate()
     let month = date.getMonth() + 1

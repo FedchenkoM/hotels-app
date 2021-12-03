@@ -15,15 +15,9 @@ app.run(function ($ionicPlatform, $rootScope, $ionicLoading) {
     $ionicLoading.show({
       template: "Loading..."
     })
-
-    $rootScope.$on("$stateChangeSuccess", () => {
-      $ionicLoading.hide()
-    })
-
-    $rootScope.$on("$stateChangeError", () => {
-      $ionicLoading.hide();
-    })
-  });
+  })
+  $rootScope.$on("$stateChangeSuccess", $ionicLoading.hide)
+  $rootScope.$on("$stateChangeError", $ionicLoading.hide)
 })
 
   .config(function ($stateProvider, $urlRouterProvider) {

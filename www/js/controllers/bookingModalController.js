@@ -1,7 +1,6 @@
-app.controller('bookingModalController', ['$scope', 'dateService', 'localStorageSrvc',
-  function ($scope, dateService, localStorageSrvc) {
-
-    $scope.today = dateService.setToday()
+app.controller('bookingModalController', ['$scope', 'dateHelper', 'localStorageHelper',
+  function ($scope, dateHelper, localStorageHelper) {
+    $scope.today = dateHelper.setToday()
     $scope.submitToLocalStorage = submitBook
     $scope.setCollision = setCollision
     $scope.changeDate = changeDate
@@ -27,13 +26,13 @@ app.controller('bookingModalController', ['$scope', 'dateService', 'localStorage
         numOfPersons: $scope.numOfPersons
       }
 
-      $scope.dateCollision = localStorageSrvc.hasDateCollision(bookInfo)
+      $scope.dateCollision = localStorageHelper.hasDateCollision(bookInfo)
       if (!$scope.dateCollision) {
-        localStorageSrvc.setHotelToLocalStorage(bookInfo)
+        localStorageHelper.setHotelToLocalStorage(bookInfo)
         $scope.closeModal().then($scope.showResume)
       } else {
         $scope.dateCollision = true
-        $scope.bookedHotelsById = localStorageSrvc.getBookedHotelsList($scope.hotel.id)
+        $scope.bookedHotelsById = localStorageHelper.getBookedHotelsList($scope.hotel.id)
       }
     }
   }])

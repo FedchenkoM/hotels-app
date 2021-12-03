@@ -1,5 +1,5 @@
-app.controller('hotelCardController', ['$scope', '$state', '$stateParams', '$ionicModal', '$ionicPopup', 'navSrvc',
-  function ($scope, $state, $stateParams, $ionicModal, $ionicPopup, navSrvc) {
+app.controller('hotelCardController', ['$scope', '$stateParams', '$ionicModal', '$ionicPopup', 'navHelper',
+  function ($scope, $stateParams, $ionicModal, $ionicPopup, navHelper) {
     $scope.$on('$ionicView.beforeEnter', function () {
       $scope.hotel = $stateParams.hotel
       if ($scope.hotel == null) {
@@ -7,7 +7,7 @@ app.controller('hotelCardController', ['$scope', '$state', '$stateParams', '$ion
       }
     })
 
-    $scope.goToMain = navSrvc.goToMain
+    $scope.goToMain = navHelper.goToMain
     $scope.closeModal = closeModal
     $scope.openModal = openModal
     $scope.showResume = showPopup
