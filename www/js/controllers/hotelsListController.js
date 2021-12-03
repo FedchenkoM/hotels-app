@@ -1,6 +1,6 @@
-app.controller('hotelsListController', ['$scope', '$state', 'navSrvc', 'hotelListHttpSrvc', '$ionicSideMenuDelegate',
-  function ($scope, $state, navSrvc, hotelListHttpSrvc, $ionicSideMenuDelegate) {
-    $scope.toBook = navSrvc.toBook
+app.controller('hotelsListController', ['$scope', '$state', 'navHelper', 'hotelListHttpHelper', '$ionicSideMenuDelegate',
+  function ($scope, $state, navHelper, hotelListHttpHelper, $ionicSideMenuDelegate) {
+    $scope.toBook = navHelper.toBook
     $scope.toBookedHotels = toBookedHotels
     $scope.changeSelected = changeSelected
     $scope.sortOptions = ['default', 'price asc.', 'price desc.', 'rate(best first)', 'only no smoke', 'only no pets']
@@ -8,7 +8,7 @@ app.controller('hotelsListController', ['$scope', '$state', 'navSrvc', 'hotelLis
     $scope.selected = $scope.sortOptions[0]
     $scope.toggleLeft = toggleLeft
 
-    hotelListHttpSrvc.getHotelsList()
+    hotelListHttpHelper.getHotelsList()
       .then(data => $scope.hotelsList = data)
       .catch(err => $scope.error = err)
 
