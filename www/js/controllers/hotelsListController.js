@@ -3,7 +3,7 @@ app.controller('hotelsListController', ['$scope', '$state', 'navSrvc', 'hotelLis
     $scope.toBook = navSrvc.toBook
     $scope.toBookedHotels = toBookedHotels
     $scope.changeSelected = changeSelected
-    $scope.sortOptions = ['default', 'price asc', 'price desc', 'rate(best first)', 'no smoke', 'no pets']
+    $scope.sortOptions = ['default', 'price asc.', 'price desc.', 'rate(best first)', 'only no smoke', 'only no pets']
     $scope.changeSelected = changeSelected
     $scope.selected = $scope.sortOptions[0]
     $scope.toggleLeft = toggleLeft
