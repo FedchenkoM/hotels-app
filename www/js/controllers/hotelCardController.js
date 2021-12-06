@@ -15,11 +15,8 @@ app.controller('hotelCardController', ['$scope', '$stateParams', '$ionicModal', 
       return $ionicModal.fromTemplateUrl('templates/bookingModal.html', {
         scope: $scope,
         animation: 'slide-in-up'
-      }).then(function (modal) {
-        $scope.modal = modal
-      }).then(function () {
-        $scope.modal.show()
-      })
+      }).then((modal) => $scope.modal = modal)
+        .then(() => $scope.modal.show())
     }
 
     $scope.showResume = () => $ionicPopup.alert({

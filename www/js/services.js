@@ -1,15 +1,11 @@
-app.factory('hotelListHttpHelper', function ($http, $q) {
-  return {
-    getHotelsList
-  }
-
+app.factory('hotelListHttpHelper',[ '$http', '$q', function ($http, $q) {
   function getHotelsList() {
     let deferred = $q.defer()
 
     $http.get('hotels-list/hotels-list.json')
       .then(data => deferred.resolve(data.data))
       .catch(error => {
-        let errorMsg = 'Неизвестная ошибка'
+        let errorMsg = 'Error'
         switch (error.status) {
           case 400 || 401 || 403:
             errorMsg = 'Invalid request';
@@ -31,31 +27,23 @@ app.factory('hotelListHttpHelper', function ($http, $q) {
       })
     return deferred.promise
   }
-})
+  return {
+    getHotelsList
+  }
+}])
 
 
   .factory('navHelper', function ($state) {
     return {
       toBook: (hotel) => $state.go('hotelCard', { hotel }),
-      goToMain
-    }
-
-    function goToMain() {
-      $state.go('main')
+      goToMain: () => $state.go('main')
     }
   })
 
 
   .factory('localStorageHelper', function () {
-    return {
-      hasHotelInLocalStorage,
-      getBookedHotelsList,
-      setHotelToLocalStorage,
-      hasDateCollision
-    }
-
     function setHotelToLocalStorage(newBookedHotel) {
-      let bookedList = getBookedHotelsList()
+      const bookedList = getBookedHotelsList()
       bookedList.push(newBookedHotel)
       window.localStorage.setItem('bookedHotels', angular.toJson(bookedList))
     }
@@ -88,38 +76,24 @@ app.factory('hotelListHttpHelper', function ($http, $q) {
       }
     }
 
-    function getBookedHotelsList(hotelId = null) {
-      let bookedHotels
+    function getBookedHotelsList(hotelId) {
+      let bookedHotels = angular.fromJson(window.localStorage.getItem('bookedHotels'))
       if (!hotelId) {
-        if (window.localStorage.getItem('bookedHotels')) {
-          bookedHotels = angular.fromJson(window.localStorage.getItem('bookedHotels'))
-        } else {
-          bookedHotels = []
+        if (bookedHotels) {
+          return bookedHotels
         }
       } else {
-        if (window.localStorage.getItem('bookedHotels')) {
-          let hotels = angular.fromJson(window.localStorage.getItem('bookedHotels'))
-          bookedHotels = hotels.filter(hotel => hotel.id === hotelId)
-        } else {
-          bookedHotels = []
+        if (bookedHotels) {
+          return bookedHotels.filter(hotel => hotel.id === hotelId)
         }
       }
-      return bookedHotels
+      return []
     }
 
-    function hasHotelInLocalStorage(hotelId) {
-      const hotels = getBookedHotelsList()
-      let curHotel = 0
-      while (curHotel < hotels.length) {
-        let cur = hotels[curHotel]
-
-        if (cur.id === hotelId) {
-          return true
-        } else {
-          curHotel++
-        }
-        return false
-      }
+    return {
+      getBookedHotelsList,
+      setHotelToLocalStorage,
+      hasDateCollision
     }
   })
 

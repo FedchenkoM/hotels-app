@@ -6,9 +6,9 @@ app.controller('bookingModalController', ['$scope', 'dateHelper', 'localStorageH
       let bookInfo = {
         ...$scope.hotel,
         dateStart: {
-          year: $scope.dateStart.getFullYear(),
-          month: $scope.dateStart.getMonth() + 1,
-          day: $scope.dateStart.getDate()
+          year: $scope.dateStart?.getFullYear(),
+          month: $scope.dateStart?.getMonth() + 1,
+          day: $scope.dateStart?.getDate()
         },
         dateEnd: dateHelper.dateEnd($scope.dateStart, $scope.numOfDays),
         totalSum: $scope.numOfDays * $scope.numOfPersons * +$scope.hotel.price,

@@ -9,7 +9,7 @@ app.run(function ($ionicPlatform, $rootScope, $ionicLoading) {
     if (window.StatusBar) {
       StatusBar.styleDefault();
     }
-  });
+  })
 
   $rootScope.$on("$stateChangeStart", () => {
     $ionicLoading.show({
@@ -20,16 +20,16 @@ app.run(function ($ionicPlatform, $rootScope, $ionicLoading) {
   $rootScope.$on("$stateChangeError", $ionicLoading.hide)
 })
 
+
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('main', {
         url: '/',
-        cache: false,
         templateUrl: 'templates/hotelsList.html',
         controller: 'hotelsListController'
       })
       .state('hotelCard', {
-        url: '/hotelCard/hotel',
+        url: '/hotelCard/hotel}',
         cache: false,
         params: {
           hotel: null
