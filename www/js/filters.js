@@ -4,10 +4,10 @@ app.filter('sortFilter', function () {
       let list = hotelsList.map(h => h)
       switch (param) {
         case "only no pets":
-          return list.filter(h => h.animals === false)
+          return list.filter(h => !h.animals)
 
         case "only no smoke":
-          return list.filter(h => h.smoke === false)
+          return list.filter(h => !h.smoke)
 
         case "price asc.":
           return list.sort((h1, h2) => h1.price - h2.price)

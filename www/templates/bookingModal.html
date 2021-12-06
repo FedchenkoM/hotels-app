@@ -38,8 +38,8 @@
           The hotel has already been booked. Please change dates or delete previous bookings.
           Date previous booking this hotel: <br> <span class="dark"
             ng-repeat="hotel in bookedHotelsById track by $index">
-            from {{hotel.dateStart.day}}/{{hotel.dateStart.month}}/{{hotel.dateStart.year}}
-            to {{hotel.dateEnd.day}}/{{hotel.dateEnd.month}}/{{hotel.dateEnd.year}} <br>
+            from {{hotel.dateStart}}
+            to {{hotel.dateEnd}} <br>
           </span>
           <button ng-click="setCollision()" class="button button-full button-calm">
             Change date

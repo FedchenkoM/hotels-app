@@ -7,8 +7,8 @@
     <a ng-repeat="hotel in hotels track by $index" class="item item-thumbnail-left animated">
       <img ng-src={{hotel.img}}>
       <h2>{{hotel.city}} | {{hotel.name}}</h2>
-      <p>Checkin date: {{hotel.dateStart.day}}.{{hotel.dateStart.month}}.{{hotel.dateStart.year}}</p>
-      <p>Checkout date: {{hotel.dateEnd.day}}.{{hotel.dateEnd.month}}.{{hotel.dateEnd.year}}</p>
+      <p>Checkin date: {{hotel.dateStart}}</p>
+      <p>Checkout date: {{hotel.dateEnd}}</p>
       <p>Number of persons: {{hotel.numOfPersons}}</p>
       <p>Total sum: &#8364;{{hotel.totalSum}}</p>
       <button ng-click='remove($index)' class="button button-outline button-assertive">

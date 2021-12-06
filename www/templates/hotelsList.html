@@ -19,7 +19,7 @@
       <ion-content>
         <section class="hotels-list">
           <span ng-if="error" class="assertive">{{error}}</span>
-          <div ng-repeat="hotel in hotelsList | sortFilter: selected | filter: hotel.city" ng-click="toBook(hotel)" class="hotel__card">
+          <div ng-repeat="hotel in hotelsList | sortFilter: selected | filter: hotel.city" ng-click="toBook(hotel, hotel.id)" class="hotel__card">
             <img ng-src={{hotel.img}} alt={{hotel.name}}>
             <div class="hotel__description">
               <h2 class="description__header">{{hotel.city}} | {{hotel.name}} </h2>
