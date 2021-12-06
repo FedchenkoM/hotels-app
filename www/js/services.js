@@ -1,4 +1,4 @@
-app.factory('hotelListHttpHelper',[ '$http', '$q', function ($http, $q) {
+app.factory('hotelListHttpHelper', ['$http', '$q', function ($http, $q) {
   function getHotelsList() {
     let deferred = $q.defer()
 
@@ -33,12 +33,12 @@ app.factory('hotelListHttpHelper',[ '$http', '$q', function ($http, $q) {
 }])
 
 
-  .factory('navHelper', function ($state) {
+  .factory('navHelper', ['$state', function ($state) {
     return {
       toBook: (hotel) => $state.go('hotelCard', { hotel }),
       goToMain: () => $state.go('main')
     }
-  })
+  }])
 
 
   .factory('localStorageHelper', function () {
@@ -49,30 +49,23 @@ app.factory('hotelListHttpHelper',[ '$http', '$q', function ($http, $q) {
     }
 
     function hasDateCollision(hotel) {
-      const bookedHotels = getBookedHotelsList(hotel.id)
-      if (!bookedHotels.length) {
+      const bookedHotels = getBookedHotelsList(hotel?.id)
+      if (!bookedHotels) {
         return false
       } else {
-        const curHotelDateCheckin = new Date(hotel.dateStart.year, hotel.dateStart.month + 1, hotel.dateStart.day)
-        const curHotelDateCheckout = new Date(hotel.dateEnd.year, hotel.dateEnd.month + 1, hotel.dateEnd.day)
+        const curHotelDateCheckin = Date.parse(hotel.dateStart)
+        const curHotelDateCheckout = Date.parse(hotel.dateEnd)
 
-        let curHotel = 0
-
-        while (curHotel < bookedHotels.length) {
-          let bookedHotel = bookedHotels[curHotel]
-
-          const hotelDateCheckin = new Date(bookedHotel.dateStart.year, bookedHotel.dateStart.month + 1, bookedHotel.dateStart.day)
-          const hotelDateCheckout = new Date(bookedHotel.dateEnd.year, bookedHotel.dateEnd.month + 1, bookedHotel.dateEnd.day)
-
-          if ((curHotelDateCheckin >= hotelDateCheckin && curHotelDateCheckin <= hotelDateCheckout)
-            || (curHotelDateCheckout >= hotelDateCheckin && curHotelDateCheckout <= hotelDateCheckout)
-            || (curHotelDateCheckin <= hotelDateCheckin && curHotelDateCheckout >= hotelDateCheckout)) {
+        return bookedHotels.find(h => {
+          const hCheckin = Date.parse(h.dateStart)
+          const hCheckout = Date.parse(h.dateEnd)
+          if ((curHotelDateCheckin >= hCheckin && curHotelDateCheckin <= hCheckout)
+            || (curHotelDateCheckout >= hCheckin && curHotelDateCheckout <= hCheckout)
+            || (curHotelDateCheckin <= hCheckin && curHotelDateCheckout >= hCheckout)) {
             return true
-          } else {
-            curHotel++
           }
           return false
-        }
+        })
       }
     }
 
@@ -100,26 +93,16 @@ app.factory('hotelListHttpHelper',[ '$http', '$q', function ($http, $q) {
 
   .factory('dateHelper', function () {
     let date = new Date()
-    let day = date.getDate()
-    let month = date.getMonth() + 1
-    let year = date.getFullYear()
+
+    function getDate(date, numOfDays) {
+      if (!numOfDays) return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`
+
+      else return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate() + numOfDays}`
+    }
 
     return {
-      dateEnd,
-      setToday
-    }
-
-    function setToday() {
-      return `${year}-${month}-${day}`
-    }
-
-    function dateEnd(dateStart, numOfDays) {
-      const date = new Date(dateStart.getFullYear(), dateStart.getMonth(), dateStart.getDate() + numOfDays)
-      return {
-        year: date.getFullYear(),
-        month: date.getMonth() + 1,
-        day: date.getDate()
-      }
+      getDate,
+      setToday: () => `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
     }
   })
 
