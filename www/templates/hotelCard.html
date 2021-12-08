@@ -8,12 +8,12 @@
       <img ng-src={{hotel.img}} alt="{{hotel.name}}">
       <img class="_smallIMG" ng-if="animals=='false'" ng-src="img/no-pets-svgrepo-com.svg">
       <img class="_smallIMG " ng-if="smoke=='false'" ng-src="img/no-smoking-svgrepo-com.svg">
-      <button class="button button-full button-calm" expand="full" ng-click="openModal()">Book for &#8364;{{hotel.price}} here
+      <button class="button button-full button-calm" expand="full" ng-click="openModal()">Book for
+        &#8364;{{hotel.price}} here
       </button>
-      <a ng-href="tel:{{hotel.phone}}">
-        <button class="button button-full button-royal" expand="full">Or book by phone &nbsp;<ion-icon name="call-outline"></ion-icon>
-        </button>
-      </a>
+      <button ng-click="call()" class="button button-full button-royal" expand="full">Or book by phone &nbsp;<ion-icon
+          name="call-outline"></ion-icon>
+      </button>
     </ion-card-header>
     <ion-card-content>
       Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident esse laudantium aliquam harum corrupti,
