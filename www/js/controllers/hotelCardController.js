@@ -5,6 +5,16 @@ app.controller('hotelCardController', ['$scope', '$stateParams', '$ionicModal', 
       if ($scope.hotel == null) {
         $scope.goToMain()
       }
+      $scope.call = () => {
+        cordova.plugins.phonedialer.call(
+          $scope.hotel.phone,
+          () => { },
+          function (err) {
+            if (err == "empty") alert("Unknown phone number")
+            else alert("Dialer Error:" + err)
+          }
+        )
+      }
     })
 
     $scope.goToMain = navHelper.goToMain
