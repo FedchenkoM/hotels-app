@@ -1,26 +1,46 @@
-// Ionic Starter App
+let app = angular.module('hotels', ['ionic'])
 
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic'])
-
-.run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs).
-    // The reason we default this to hidden is that native apps don't usually show an accessory bar, at
-    // least on iOS. It's a dead giveaway that an app is using a Web View. However, it's sometimes
-    // useful especially with forms, though we would prefer giving the user a little more room
-    // to interact with the app.
+app.run(function ($ionicPlatform, $rootScope, $ionicLoading) {
+  $ionicPlatform.ready(function () {
     if (window.cordova && window.Keyboard) {
       window.Keyboard.hideKeyboardAccessoryBar(true);
     }
 
     if (window.StatusBar) {
-      // Set the statusbar to use the default style, tweak this to
-      // remove the status bar on iOS or change it to use white instead of dark colors.
       StatusBar.styleDefault();
     }
-  });
+  })
+
+  $rootScope.$on("$stateChangeStart", () => {
+    $ionicLoading.show({
+      template: "Loading..."
+    })
+  })
+  $rootScope.$on("$stateChangeSuccess", $ionicLoading.hide)
+  $rootScope.$on("$stateChangeError", $ionicLoading.hide)
 })
+
+
+  .config(function ($stateProvider, $urlRouterProvider) {
+    $stateProvider
+      .state('main', {
+        url: '/',
+        templateUrl: 'templates/hotelsList.html',
+        controller: 'hotelsListController'
+      })
+      .state('hotelCard', {
+        url: '/hotelCard/hotel}',
+        cache: false,
+        params: {
+          hotel: null
+        },
+        templateUrl: 'templates/hotelCard.html',
+        controller: 'hotelCardController'
+      })
+      .state('bookedList', {
+        url: '/bookedList',
+        templateUrl: 'templates/bookedList.html',
+        controller: 'bookedHotelsListController'
+      })
+    $urlRouterProvider.otherwise("/");
+  })

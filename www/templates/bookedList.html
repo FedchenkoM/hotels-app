@@ -1,0 +1,19 @@
+<ion-view>
+  <div class="bar bar-header">
+    <a ng-click="goToMain()" class="button icon-left ion-chevron-left button-clear button-dark"></a>
+  <h1 ng-if="hotels.length" class="title">Your booked hotels list<h1 class="title" ng-if="!hotels.length"> You have no booked hotels :(</h1>
+  </div>
+  <div class="list _booked-hotels-list">
+    <a ng-repeat="hotel in hotels track by $index" class="item item-thumbnail-left animated">
+      <img ng-src={{hotel.img}}>
+      <h2>{{hotel.city}} | {{hotel.name}}</h2>
+      <p>Checkin date: {{hotel.dateStart}}</p>
+      <p>Checkout date: {{hotel.dateEnd}}</p>
+      <p>Number of persons: {{hotel.numOfPersons}}</p>
+      <p>Total sum: &#8364;{{hotel.totalSum}}</p>
+      <button ng-click='remove($index)' class="button button-outline button-assertive">
+        cancel reservation
+      </button>
+    </a>
+  </div>
+</ion-view>

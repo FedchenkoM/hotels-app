@@ -1,0 +1,36 @@
+<ion-view>
+  <ion-card>
+    <a ng-click=goToMain() class="button icon-left ion-chevron-left button-clear button-dark"></a>
+    <ion-card-header>
+      <ion-card-title class="ion-padding-bottom ion-text-uppercase">{{hotel.name}} | {{hotel.city}} |
+        &#10051;{{hotel.score}} |
+      </ion-card-title>
+      <img ng-src={{hotel.img}} alt="{{hotel.name}}">
+      <img class="_smallIMG" ng-if="animals=='false'" ng-src="img/no-pets-svgrepo-com.svg">
+      <img class="_smallIMG " ng-if="smoke=='false'" ng-src="img/no-smoking-svgrepo-com.svg">
+      <button class="button button-full button-calm" expand="full" ng-click="openModal()">Book for
+        &#8364;{{hotel.price}} here
+      </button>
+      <button ng-click="call()" class="button button-full button-royal" expand="full">Or book by phone &nbsp;<ion-icon
+          name="call-outline"></ion-icon>
+      </button>
+    </ion-card-header>
+    <ion-card-content>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident esse laudantium aliquam harum corrupti,
+      perspiciatis id neque reprehenderit repellendus quidem veritatis sunt consectetur eaque itaque eos facere porro
+      aspernatur dolore.
+      Sequi totam dolore impedit quibusdam possimus repellendus esse sed consectetur tempora laudantium laboriosam
+      temporibus explicabo fugit culpa, saepe ducimus, quos mollitia voluptatibus libero, exercitationem hic odit.
+      Excepturi ipsa pedita animi provident quibusdam ex quaerat voluptate repellat, tempora temporibus sint adipisci?
+      Earum excepturi dicta nihil nostrum sunt voluptatem.
+      ab perferendis ex harum.
+      Aliam cum quod non. Consectetur vel ducimus officiis assumenda cupiditate sapiente, illum ex, tenetur ratione fuga
+      quasi doloribus cum deserunt odit dolore!
+      Reprehenderit, id eum, illum commodi laborum harum explicabo quae odio quas similique ab praesentium cum quibusdam
+      laboriosam quia nulla labore? Excepturi ratione ipsa natus ut nostrum odit aspernatur ea iste?
+      Labore architecto esse voluptatibus reprehenderit modi libero illum porro vel, magnam voluptates sed. Magnam,
+      cupiditate possimus neque rerum, delectus doloremque fuga consequatur ab velit necessitatibus, est voluptate quos
+      repellendus excepturi?
+    </ion-card-content>
+  </ion-card>
+</ion-view>

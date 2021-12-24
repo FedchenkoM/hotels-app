@@ -1,0 +1,50 @@
+<ion-modal-view>
+  <div ng-controller="bookingModalController" class="my-modal">
+    <div class="bar bar-header bar-calm">
+      <a ng-click="closeModal()" class="button icon-left ion-chevron-left button-clear button-dark"></a>
+      <h1 class="title">Booking form {{hotel.name}}</h1>
+    </div>
+      <div class="list">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Hotel</span>
+          <input type="text" value="{{hotel.name}}" readonly>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Location</span>
+          <input type="text" value="{{hotel.city}}" readonly>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Date start</span>
+          <input type="date" ng-change="changeDate()" ng-model="dateStart" min={{today}}>
+          <span class="assertive" ng-if="startDayNotValid">Date cannot be less than today</span>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Maximum number of persons <b>99</b> </span>
+          <input type="number" placeholder="enter the number of persons" ng-model="numOfPersons" ng-min="1" ng-max="99">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Maximum number of days <b>30</b> </span>
+          <input type="number" placeholder="enter the number of days" ng-model="numOfDays" ng-min="1" ng-max="30">
+        </label>
+        <button ng-click="submitToLocalStorage()" ng-if="!dateCollision"
+          ng-disabled="!numOfPersons || !hotel.price || !numOfDays || !dateStart || startDayNotValid"
+          class="button button-block button-calm">
+          <span ng-if="numOfPersons && numOfDays && dateStart && hotel.price && !dateCollision && !startDayNotValid"> <b>
+              Book for &#8364;{{numOfPersons * numOfDays * hotel.price}}</b>
+          </span>
+          <span ng-if="!numOfPersons || !numOfDays || !dateStart || !hotel.price || startDayNotValid"> Please fill in all fields correct </span>
+        </button>
+        <p class="ion-padding assertive" ng-if="dateCollision">
+          The hotel has already been booked. Please change dates or delete previous bookings.
+          Date previous booking this hotel: <br> <span class="dark"
+            ng-repeat="hotel in bookedHotelsById track by $index">
+            from {{hotel.dateStart}}
+            to {{hotel.dateEnd}} <br>
+          </span>
+          <button ng-click="setCollision()" class="button button-full button-calm">
+            Change date
+          </button>
+        </p>
+      </div>
+  </div>
+</ion-modal-view>
