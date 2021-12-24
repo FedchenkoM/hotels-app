@@ -1,10 +1,7 @@
-app.controller('hotelCardController', ['$scope', '$stateParams', '$ionicModal', '$ionicPopup', 'navHelper',
-  function ($scope, $stateParams, $ionicModal, $ionicPopup, navHelper) {
+app.controller('hotelCardController', ['$scope', '$state', '$ionicModal', '$ionicPopup', 'navHelper',
+  function ($scope, $state, $ionicModal, $ionicPopup, navHelper) {
     $scope.$on('$ionicView.beforeEnter', function () {
-      $scope.hotel = $stateParams.hotel
-      if ($scope.hotel == null) {
-        $scope.goToMain()
-      }
+      $scope.hotel = $state.params.hotel
       $scope.call = () => {
         cordova.plugins.phonedialer.call(
           $scope.hotel.phone,
